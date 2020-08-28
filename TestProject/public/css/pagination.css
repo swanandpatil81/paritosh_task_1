@@ -1,0 +1,64 @@
+div.pagination {
+	padding: 3px;
+	margin: 3px;
+}
+
+div.pagination a {
+	padding: 2px 5px 2px 5px;
+	margin: 2px;
+	border: 1px solid #AAAADD;
+	text-decoration: none; /* no underline */
+	color: #000099;
+}
+div.pagination a:hover, div.pagination a:active {
+	border: 1px solid #000099;
+	color: #000;
+}
+div.pagination span.current {
+	padding: 2px 5px 2px 5px;
+	margin: 2px;
+		border: 1px solid #000099;
+		font-weight: bold;
+		background-color: #000099;
+		color: #FFF;
+	}
+div.pagination span.disabled {
+	padding: 2px 5px 2px 5px;
+	margin: 2px;
+	border: 1px solid #EEE;
+	color: #DDD;
+}
+.total_no_data{
+	float:left;
+	width:100%;
+	margin-bottom:11px;
+}
+.total_data{
+    float: left;
+    width: 20%;
+    font-size: 15px;
+    font-weight: bold;
+}
+.pagi_per{
+	float:right;
+}
+.goto{
+	float:right;
+}
+.span_search{
+	float:right;
+}
+#txt_goto_page{
+    font-size: 17px;
+    width: 100px;
+    border: 2px solid green;
+    border-radius:5px;
+    padding: 2px;
+}
+#txt_search{
+    font-size: 17px;
+    width: 200px;
+    border: 2px solid green;
+    padding: 2px;
+    border-radius:5px;
+}
