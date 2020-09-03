@@ -22,16 +22,14 @@ class HomeController extends Controller{
 
     public function distance_calc(Request $request){   
 
-    	if($request->distance == '' or $request->smoothroad == '' or $request->badroad == '' or $request->workinprogress == ''){
+    	if(($request->distance == '' or !is_numeric($request->distance)) or ($request->smoothroad == '' or !is_numeric($request->smoothroad)) or ($request->badroad == '' or !is_numeric($request->badroad)) or ($request->workinprogress == '' or !is_numeric($request->workinprogress))){
 
-    		echo "?distance=800&smoothroad=400&badroad=200&workinprogress=200&break=";
-    		echo "<br><br>";
-
-    		echo "distance = Required (Integer)<br>";
-    		echo "smoothroad = Required (Integer)<br>";
-    		echo "badroad = Required (Integer)<br>";
-    		echo "workinprogress = Required (Integer)<br>";
-    		echo "break = Optional (Integer)<br>";
+            $this -> pretty_print("?distance=800&smoothroad=400&badroad=200&workinprogress=200&break=");
+            $this -> pretty_print("distance = Required (Integer)");
+            $this -> pretty_print("smoothroad = Required (Integer)");
+            $this -> pretty_print("badroad = Required (Integer)");
+            $this -> pretty_print("workinprogress = Required (Integer)");
+            $this -> pretty_print("break = Optional (Integer)");
 
     	}else{
 
@@ -50,14 +48,14 @@ class HomeController extends Controller{
 	    		$breaks_time = $breaks_taken * COMPULSORY_BREAKS_AT_200KM_TIME_MINUTES;
 	    	}
 
-	    	echo "distance = ".$total_distance." km<br>";
-	    	echo "smoothroad = ".$smooth_road_distance." km<br>";
-	    	echo "badroad = ".$badroad_distance." km<br>";
-	    	echo "workinprogress = ".$workinprogress_distance." km<br>";
-	    	echo "break = ".$breaks_taken."<br>";
+            $this -> pretty_print("distance = ".$total_distance." km");
+            $this -> pretty_print("smoothroad = ".$smooth_road_distance." km");
+            $this -> pretty_print("badroad = ".$badroad_distance." km");
+            $this -> pretty_print("workinprogress = ".$workinprogress_distance." km");
+            $this -> pretty_print("break = ".$breaks_taken);
 
 	    	$total_smooth_bad_wip = $smooth_road_distance + $badroad_distance + $workinprogress_distance;
-	    	echo "Total(smooth+bad+wip) = ".$total_smooth_bad_wip." km<br>";
+            $this -> pretty_print("Total(smooth+bad+wip) = ".$total_smooth_bad_wip." km");
 
 	    	if($total_smooth_bad_wip == $total_distance){
 
@@ -65,7 +63,7 @@ class HomeController extends Controller{
 	    		$bad_road_seconds = $this -> display_bad_road_data($badroad_distance , BAD_ROAD);
 	    		$wip_road_seconds = $this -> display_wip_road_data($workinprogress_distance , WIP_ROAD);
 	    		$breaks_seconds = $this -> display_break_data($breaks_time);
-	    		echo "breaks_time = ".$breaks_time." minutes<br>";
+                $this -> pretty_print("breaks_time = ".$breaks_time." minutes");
 
 	    		$total_journey_seconds = $smooth_road_seconds + $bad_road_seconds + $wip_road_seconds + ($breaks_time * 60);
 
